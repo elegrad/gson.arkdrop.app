@@ -1,0 +1,28 @@
+{
+	columns: {
+		name: [
+			"Nick",
+			"Chris",
+			"Barry"
+		],
+		age: [
+			21,
+			27,
+			67;
+		]
+	},
+	rows: [
+		{
+			name: "Nick",
+			age: 21
+		},
+		{
+			name: "Chris",
+			age: 27
+		},
+		{
+			name: "Barry",
+			age: 67
+		}
+	]
+}
