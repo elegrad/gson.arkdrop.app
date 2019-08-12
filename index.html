@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>gSon by ArkDrop</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+
+	<link rel="stylesheet" href="https://get.mavo.io/mavo.css"/>
+	<script src="https://get.mavo.io/mavo.js"></script>
+</head>
+<body mv-app mv-bar="none" mv-storage="local">
+	<nav class="uk-background-secondary" uk-navbar mv-bar uk-sticky>
+		<div class="uk-navbar-left">
+			<a class="uk-navbar-toggle" href="#offcanvas" uk-toggle uk-navbar-toggle-icon ></a>
+			<a class="uk-navbar-item uk-logo uk-light" href="#">gSon by ArkDrop</a>
+		</div>
+		<div class="uk-navbar-right">
+			<ul class="uk-navbar-nav">
+				<li><a href="#modal-about" uk-toggle>About</a></li>
+			</ul>
+			<div class="uk-navbar-item">
+				<button class="uk-button uk-button-primary mv-save uk-margin-right" uk-tooltip="title: Any data is stored locally in your browser">Save Query</button>
+			</div>
+		</div>
+	</nav>
+
+	<div id="app-privacy" class='uk-grid-collapse' uk-grid>
+		<div class="uk-width-1-1@s uk-background-muted uk-padding-small">
+			<a mv-if="QUERY" href="https://gsonapi.arkdrop.app/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO]&q=[QUERY][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
+
+			<a mv-if="QUERY = 0" href="https://gsonapi.arkdrop.app/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
+
+
+			<code>https://gsonapi.arkdrop.app/api?id=<strong class="uk-text-primary">[SPREADSHEET_ID]</strong><span mv-if="SHEET_NO">&sheet=<strong class="uk-text-primary">[SHEET_NO]</strong></span><span mv-if="QUERY">&q=<strong class="uk-text-primary">[QUERY]</strong></span>[INTEGERS][ROWS][COLUMNS]</code>
+
+		</div>
+		<div class="uk-section uk-section-primary uk-padding uk-width-1-3@s" >
+			<form>
+					<h3>gSon Query Builder</h3>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Google SpreadSheet ID</label>
+						<input class="uk-input" type="text" placeholder="Google SpreadSheet ID" property="SPREADSHEET_ID">
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Sheet Number</label>
+						<input class="uk-input" type="text" placeholder="Sheet Number" value="1" property="SHEET_NO">
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-text">Query</label>
+						<input class="uk-input" type="text" placeholder="Query" property="QUERY">
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Integers</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select" property="INTEGERS">
+								<option value="">True</option>
+								<option value="&integers=false">False</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Rows</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select" property="ROWS">
+								<option value="">True</option>
+								<option value="&rows=false">False</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Columns</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select" property="COLUMNS">
+								<option value="">True</option>
+								<option value="&columns=false">False</option>
+							</select>
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="uk-section uk-padding uk-width-2-3@s" >
+			
+
+			<ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade">
+				<li><a href="#" >About</a></li>
+				<li><a href="#" >Usage</a></li>
+				<li><a href="#" >Parameters</a></li>
+				<li><a href="#" >Example Response</a></li>
+				<li><a href="#" >Notes</a></li>
+			</ul>
+			<ul class="uk-switcher">
+				<li>
+					<h2>About</h2>
+					<p>One useful feature of Google Spreadsheets is the ability to access the data as JSON by using a particular feed URL. However, this is a bit fiddly to do, and the resulting JSON is pretty unreadable, with usable data buried deep inside objects.</p>
+
+					<p>This API connects to your spreadsheet and santizes the data, providing simple, readable JSON, that accepts queries, for you to use in your app.</p>
+
+					<div class="uk-alert-primary" uk-alert>
+						<p>Saved Queries will be deleted only if you delete Local Storage of your browser vie its Settings panel.</p>
+					</div>
+					<div class="uk-alert-danger" uk-alert>
+						<h3>Attention</h3>
+						<p>gSon application does not interfere with your data. It doesn't have the permissions to write or delete anything. It displays your data publicly via its API only if you first make it public within the Google Sheets interface. gSon application and ELEGRAD cannot be responsible for any data loss.</p>
+					</div>
+				</li>
+				<li>
+					<h1>Usage</h1>
+					<p>First, you must publish your spreadsheet to the web, using File -> Publish To Web in your Google Spreadsheet.</p>
+					<p>You can then access your readable JSON API using the /api endpoint.</p>
+					<pre class="uk-background-muted">https://gsonapi.arkdrop.app/api?id=SPREADSHEET_ID&sheet=SHEET_NUMBER&q=QUERY</pre>
+					<p>This will update live with changes to the spreadsheet.</p>
+					<div class="uk-alert-primary" uk-alert>
+						<p>Use the query builder on the left side (blue sidebar) to easily create your URL</p>
+					</div>
+				</li>
+				<li>
+					<h1>Parameters</h1>
+					<p><strong>id (required)</strong>: The ID of your document. This is the big long aplha-numeric code in the middle of your document URL.</p>
+
+					<p><strong>sheet (optional)</strong>: The number of the individual sheet you want to get data from. Your first sheet is 1, your second sheet is 2, etc. If no sheet is entered then 1 is the default.</p>
+
+					<p><strong>q (optional)</strong>: A simple query string. This is case insensitive and will add any row containing the string in any cell to the filtered result.</p>
+
+					<p><strong>integers (optional - default: true)</strong>: Setting 'integers' to false will return numbers as a string (useful for decimal points).</p>
+
+					<p><strong>rows (optional - default: true)</strong>: Setting 'rows' to false will return only column data.</p>
+
+					<p><strong>columns (optional - default: true)</strong>: Setting 'columns' to false will return only row data.</p>
+				</li>
+				<li>
+					<p>There are two sections to the returned data - Columns (containing each column as a data array), and Rows (containing each row of data as an object.</p>
+					<iframe src="example.json" style="width: 100%; height: 500px; border: 1px solid #ccc;"></iframe>
+				</li>
+				<li>
+					<h1>Notes</h1>
+					<p>The API only supports GET requests</p>
+					<p>The app is currently hosted on a basic Heroku instance and as such the server may experience downtime.</p>
+					<p>This was built using Node.js based on the script of Nick Moreton.</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="uk-section uk-section-secondary uk-padding ">
+		<p>The use of this application is offered for free by <a href="https://www.elegrad.com" target="_blank" rel="noopener noreferrer">ELEGRAD</a>.</p>
+	</div>
+
+	<!-- This is the modal HOW IT WORKS-->
+	<div id="modal-about" class="uk-modal-container" uk-modal>
+		<div class="uk-modal-dialog uk-modal-body">
+			<button class="uk-modal-close-default" type="button" uk-close></button>
+			<h2 class="uk-modal-title">About</h2>
+			<p>One useful feature of Google Spreadsheets is the ability to access the data as JSON by using a particular feed URL. However, this is a bit fiddly to do, and the resulting JSON is pretty unreadable, with usable data buried deep inside objects.</p>
+
+			<p>This API connects to your spreadsheet and santizes the data, providing simple, readable JSON, that accepts queries, for you to use in your app.</p>
+			
+			<div class="uk-alert-primary" uk-alert>
+				<p>Saved Queries will be deleted only if you delete Local Storage of your browser vie its Settings panel.</p>
+			</div>
+			<div class="uk-alert-danger" uk-alert>
+				<h3>Attention</h3>
+				<p>gSon application does not interfere with your data. It doesn't have the permissions to write or delete anything. It displays your data publicly via its API only if you first make it public within the Google Sheets interface. gSon application and ELEGRAD cannot be responsible for any data loss.</p>
+			</div>
+			<p class="uk-text-right">
+				<button class="uk-button uk-button-default uk-modal-close" type="button">ΚΛΕΙΣΙΜΟ</button>
+				<!-- <button class="uk-button uk-button-primary" type="button">Save</button> -->
+			</p>
+		</div>
+	</div>
+
+	<!-- This is the off-canvas -->
+    <div id="offcanvas" uk-offcanvas="overlay: true;mode: push">
+        <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <ul class="uk-nav uk-nav-default">
+	            <li class="uk-active"><a href="#">Active</a></li>
+	            <li class="uk-parent">
+	                <a href="#">Parent</a>
+	                <ul class="uk-nav-sub">
+	                    <li><a href="#">Sub item</a></li>
+	                    <li><a href="#">Sub item</a></li>
+	                </ul>
+	            </li>
+	            <li class="uk-nav-header">Header</li>
+	            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
+	            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
+	            <li class="uk-nav-divider"></li>
+	            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
+	        </ul>
+
+        </div>
+    </div>
+</body>
+</html>
