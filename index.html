@@ -33,7 +33,7 @@
 			<div mv-if="SPREADSHEET_ID">
 				<a mv-if="QUERY" href="https://arkdrop-gson.herokuapp.com/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO]&q=[QUERY][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
 
-				<a mv-if="QUERY = 0" href="https://arkdrop-gson.herokuapp.comapi?id=[SPREADSHEET_ID]&sheet=[SHEET_NO][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
+				<a mv-if="QUERY = 0" href="https://arkdrop-gson.herokuapp.com/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
 			</div>
 
 			<code>https://arkdrop-gson.herokuapp.com/api?id=<strong class="uk-text-primary">[SPREADSHEET_ID]</strong><span mv-if="SHEET_NO">&sheet=<strong class="uk-text-primary">[SHEET_NO]</strong></span><span mv-if="QUERY">&q=<strong class="uk-text-primary">[QUERY]</strong></span>[INTEGERS][ROWS][COLUMNS]</code>
