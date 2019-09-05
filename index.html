@@ -31,12 +31,12 @@
 	<div id="app-privacy" class='uk-grid-collapse' uk-grid>
 		<div class="uk-width-1-1@s uk-background-muted uk-padding-small">
 			<div mv-if="SPREADSHEET_ID">
-				<a mv-if="QUERY" href="https://gsonapi.arkdrop.app/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO]&q=[QUERY][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
+				<a mv-if="QUERY" href="https://arkdrop-gson.herokuapp.com/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO]&q=[QUERY][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
 
-				<a mv-if="QUERY = 0" href="https://gsonapi.arkdrop.app/api?id=[SPREADSHEET_ID]&sheet=[SHEET_NO][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
+				<a mv-if="QUERY = 0" href="https://arkdrop-gson.herokuapp.comapi?id=[SPREADSHEET_ID]&sheet=[SHEET_NO][INTEGERS][ROWS][COLUMNS]" class="uk-button uk-button-secondary uk-button-small uk-float-right" target="_blank">View Response</a>
 			</div>
 
-			<code>https://gsonapi.arkdrop.app/api?id=<strong class="uk-text-primary">[SPREADSHEET_ID]</strong><span mv-if="SHEET_NO">&sheet=<strong class="uk-text-primary">[SHEET_NO]</strong></span><span mv-if="QUERY">&q=<strong class="uk-text-primary">[QUERY]</strong></span>[INTEGERS][ROWS][COLUMNS]</code>
+			<code>https://arkdrop-gson.herokuapp.com/api?id=<strong class="uk-text-primary">[SPREADSHEET_ID]</strong><span mv-if="SHEET_NO">&sheet=<strong class="uk-text-primary">[SHEET_NO]</strong></span><span mv-if="QUERY">&q=<strong class="uk-text-primary">[QUERY]</strong></span>[INTEGERS][ROWS][COLUMNS]</code>
 
 		</div>
 		<div class="uk-section uk-section-primary uk-padding uk-width-1-3@s" >
@@ -114,7 +114,7 @@
 					<h1>Usage</h1>
 					<p>First, you must publish your spreadsheet to the web, using File -> Publish To Web in your Google Spreadsheet.</p>
 					<p>You can then access your readable JSON API using the /api endpoint.</p>
-					<pre class="uk-background-muted">https://gsonapi.arkdrop.app/api?id=SPREADSHEET_ID&sheet=SHEET_NUMBER&q=QUERY</pre>
+					<pre class="uk-background-muted">https://arkdrop-gson.herokuapp.com/api?id=SPREADSHEET_ID&sheet=SHEET_NUMBER&q=QUERY</pre>
 					<p>This will update live with changes to the spreadsheet.</p>
 					<div class="uk-alert-primary" uk-alert>
 						<p>Use the query builder on the left side (blue sidebar) to easily create your URL</p>
